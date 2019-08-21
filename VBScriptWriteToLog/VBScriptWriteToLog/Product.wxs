@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+   <Product Id="*" Name="VBScriptWriteToLog" Language="1033" Version="1.0.0.0"
+            Manufacturer="installdude.com" UpgradeCode="cb24bedf-e361-4f25-9a06-ac84ce5d6f5c">
+            <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+    
+    <Binary Id='CA.vbs' SourceFile='CA.vbs' />
+    <CustomAction Id='CA.vbs' VBScriptCall='' BinaryKey='CA.vbs' Execute='immediate' Return='ignore' />
+    
+    <UIRef Id="WixUI_Mondo" />
+    <Feature Id="ProductFeature" Title="VBScriptWriteToLog" Level="1" />
+
+    <InstallExecuteSequence>
+      <Custom Action='CA.vbs' After='InstallInitialize'>NOT Installed AND NOT REMOVE~="ALL"</Custom>
+    </InstallExecuteSequence>
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="VBScriptWriteToLog">
+          <Component Feature="ProductFeature">
+            <File Source="C:\Windows\Notepad.exe" />
+          </Component>
+        </Directory>
+      </Directory>
+    </Directory>
+    
+   </Product>
+</Wix>
