@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.757
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "VBScriptWriteToLog", "VBScriptWriteToLog\VBScriptWriteToLog.wixproj", "{4462C792-A6DB-4CE4-8734-434AA38EF397}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4462C792-A6DB-4CE4-8734-434AA38EF397}.Debug|x86.ActiveCfg = Debug|x86
+		{4462C792-A6DB-4CE4-8734-434AA38EF397}.Debug|x86.Build.0 = Debug|x86
+		{4462C792-A6DB-4CE4-8734-434AA38EF397}.Release|x86.ActiveCfg = Release|x86
+		{4462C792-A6DB-4CE4-8734-434AA38EF397}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7107F598-C975-4147-9943-BD726F5FF7D9}
+	EndGlobalSection
+EndGlobal
