@@ -1,0 +1,44 @@
+REGEDIT4
+
+;
+; FOR RIGHT-CLICK IN RIGHT EXPLORER PANE
+;
+
+[HKEY_CURRENT_USER\Software\Classes\Directory\Background\shell\cmd-custom]
+@="Open CMD.EXE here..."
+"Position"="Bottom"
+"Icon"="cmd.exe,0"
+
+[HKEY_CURRENT_USER\Software\Classes\Directory\Background\shell\cmd-custom\command]
+@="cmd.exe /s /k pushd \"%V\""
+
+[HKEY_CURRENT_USER\Software\Classes\Directory\Background\shell\runas]
+"HasLUAShield"=""
+"Icon"="cmd.exe,0"
+"Position"="Bottom"
+@="Open CMD.EXE here... (admin)"
+
+[HKEY_CURRENT_USER\Software\Classes\Directory\Background\shell\runas\command]
+@="cmd.exe /s /k pushd \"%V\""
+
+; 
+; FOR RIGHT-CLICK IN LEFT EXPLORER PANE AND FOR SPECIFIC FOLDER
+;
+
+[HKEY_CURRENT_USER\Software\Classes\Directory\shell\cmd-custom]
+@="Open CMD.EXE here..."
+"Position"="Bottom"
+"Icon"="cmd.exe,0"
+
+[HKEY_CURRENT_USER\Software\Classes\Directory\shell\cmd-custom\command]
+@="cmd.exe /s /k pushd \"%V\""
+
+[HKEY_CURRENT_USER\Software\Classes\Directory\shell\runas]
+@="Open CMD.EXE here... (admin)"
+"Icon"="cmd.exe,0"
+"HasLUAShield"=""
+"Position"="Bottom"
+
+[HKEY_CURRENT_USER\Software\Classes\Directory\shell\runas\command]
+@="cmd.exe /s /k pushd \"%V\""
+
