@@ -42,7 +42,3 @@ namespace DTFTest
         }
     }
 }
-
-// System.Environment.Exit(-1);
-// Installer.ConfigureProduct(, 0, InstallState.Absent, "REBOOT=\"R\"");
-// Installer.EnableLog(InstallLogModes.Error, errorLogPath);
