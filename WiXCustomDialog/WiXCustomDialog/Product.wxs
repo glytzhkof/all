@@ -22,7 +22,7 @@
         <Directory Id="INSTALLFOLDER" Name="WiXCustomDialog">
 
           <Component Feature="ProductFeature">
-            <File Source="C:\Windows\System32\notepad.exe"></File>
+            <File Source="$(env.SystemRoot)\notepad.exe"></File>
           </Component>
 
         </Directory>
