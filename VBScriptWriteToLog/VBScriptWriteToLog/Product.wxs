@@ -20,7 +20,7 @@
       <Directory Id="ProgramFilesFolder">
         <Directory Id="INSTALLFOLDER" Name="VBScriptWriteToLog">
           <Component Feature="ProductFeature">
-            <File Source="C:\Windows\Notepad.exe" />
+            <File Source="$(env.SystemRoot)\notepad.exe" />
           </Component>
         </Directory>
       </Directory>
