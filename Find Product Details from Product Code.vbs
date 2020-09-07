@@ -1,7 +1,7 @@
 'On Error Resume Next ' we ignore all errors
 Set installer = CreateObject("WindowsInstaller.Installer")
-search = Trim(InputBox("Please paste or type in the product code you want to look up details for:", _
-              "Find Product Details (test GUID provided):", "{8BC4D6BF-C0CF-48EB-A229-FC692208DFF0}"))
+search = RemoveWhiteSpace(InputBox("Please paste or type in the product code you want to look up details for:", _
+              "Find Product Details (test GUID provided):", "{7DC387B8-E6A2-480C-8EF9-A6E51AE81C19}"))
 If search = vbCancel Or Trim(search) = "" Then
    WScript.Quit(0)
 End If
@@ -17,3 +17,14 @@ For Each product In installer.ProductsEx("", "", 7)
 Next
 
 MsgBox "Completed product scan.", vbOKOnly, "Scan Complete"
+
+' Remove not only spaces but tabs and control characters
+Function RemoveWhiteSpace(str)
+
+	Set re = New RegExp
+	re.Pattern = "\s+"
+	re.Global  = True
+	
+	RemoveWhiteSpace = Trim(re.Replace(str, " "))
+
+End Function
