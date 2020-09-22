@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="*" Name="ProjectPaths" Language="1033" Version="1.0.0.0" Manufacturer="Someone" UpgradeCode="b3d89acb-71d9-48ab-a3df-886d49965ea3">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+    <MediaTemplate EmbedCab="yes" />
+    
+    <!-- Diabled main GUI (custom action GUI will show), just un-comment to enable MSI GUI sequence -->
+    <!--<UIRef Id="WixUI_Mondo" />-->
+
+    <!-- Declare property with value -->
+    <Property Id="MYPROPERTY" Secure="yes">Send this text to deferred mode</Property>
+
+    <!-- Type 51 CA: Send value of MYPROPERTY to the deferred mode CA named MyAction -->
+    <CustomAction Id="SetProperty" Return="check" Property="ReadProperyDeferred" Value="[MYPROPERTY]" />
+
+    <!-- C#, make sure it is deferred! -->
+    <Binary Id="CustomActions" SourceFile="$(var.CustomActionSample.TargetDir)$(var.CustomActionSample.TargetName).CA.dll" />
+    <CustomAction Id="ReadProperyDeferred" HideTarget="yes" BinaryKey="CustomActions" Execute="deferred" DllEntry="TestCustomAction" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+
+    <Feature Id="ProductFeature" Title="ProjectPaths" Level="1" />
+    
+    <InstallExecuteSequence>
+      <Custom Action='SetProperty' Before='InstallInitialize'></Custom>
+      <Custom Action='ReadProperyDeferred' Before='InstallFinalize'></Custom>
+    </InstallExecuteSequence>
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="Test Folder">
+
+            <Component Feature="ProductFeature">
+              <File Source="$(env.SystemRoot)\notepad.exe" />
+            </Component>
+
+        </Directory>
+      </Directory>
+    </Directory>
+
+</Product>
+</Wix>
