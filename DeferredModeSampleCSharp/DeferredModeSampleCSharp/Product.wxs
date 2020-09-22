@@ -8,7 +8,7 @@
     <!--<UIRef Id="WixUI_Mondo" />-->
 
     <!-- Declare property with value -->
-    <Property Id="MYPROPERTY" Secure="yes">Send this text to deferred mode</Property>
+    <Property Id="MYPROPERTY" Hidden="yes" Secure="yes">Send this text to deferred mode</Property>
 
     <!-- Type 51 CA: Send value of MYPROPERTY to the deferred mode CA named MyAction -->
     <CustomAction Id="SetProperty" Return="check" Property="ReadProperyDeferred" Value="[MYPROPERTY]" />
