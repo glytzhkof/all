@@ -6,7 +6,7 @@
     <ProductVersion>3.10</ProductVersion>
     <ProjectGuid>472605f0-2c22-4028-a1e3-e2fa9be67ae8</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
-    <OutputName>ProjectPaths</OutputName>
+    <OutputName>DeferredModeSampleCSharp</OutputName>
     <OutputType>Package</OutputType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
