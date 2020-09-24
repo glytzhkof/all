@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "WiXBitnessX64", "WiXBitnessX64\WiXBitnessX64.wixproj", "{472605F0-2C22-4028-A1E3-E2FA9BE67AE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomAction2", "CustomAction2\CustomAction2.csproj", "{7F322E07-2DD9-4C60-A18E-2FCB061480C0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{472605F0-2C22-4028-A1E3-E2FA9BE67AE8}.Debug|x86.ActiveCfg = Debug|x86
+		{472605F0-2C22-4028-A1E3-E2FA9BE67AE8}.Debug|x86.Build.0 = Debug|x86
+		{472605F0-2C22-4028-A1E3-E2FA9BE67AE8}.Release|x86.ActiveCfg = Release|x86
+		{472605F0-2C22-4028-A1E3-E2FA9BE67AE8}.Release|x86.Build.0 = Release|x86
+		{7F322E07-2DD9-4C60-A18E-2FCB061480C0}.Debug|x86.ActiveCfg = Debug|x86
+		{7F322E07-2DD9-4C60-A18E-2FCB061480C0}.Debug|x86.Build.0 = Debug|x86
+		{7F322E07-2DD9-4C60-A18E-2FCB061480C0}.Release|x86.ActiveCfg = Release|x86
+		{7F322E07-2DD9-4C60-A18E-2FCB061480C0}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D974AAFE-504A-42FB-AFFD-B351EC835763}
+	EndGlobalSection
+EndGlobal
