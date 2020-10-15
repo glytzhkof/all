@@ -13,17 +13,23 @@
       <Directory Id="ProgramFilesFolder">
         <Directory Id="INSTALLFOLDER" Name="Test Folder">
 
-            <Component Feature="ProductFeature">
-            
-              <File Source="$(env.SystemRoot)\notepad.exe" />
-              
-              <util:User Id="Everyone" Name="Everyone" />
-              
-              <util:FileShare Id="TestShare" Name="TestShareName" Description="This is a test share.">
-                <util:FileSharePermission User="Everyone" GenericAll="yes"/>
-              </util:FileShare>
-            
-            </Component>
+          <Component Feature="ProductFeature">
+
+            <File Source="$(env.SystemRoot)\notepad.exe" />
+
+            <util:User Id="Everyone" Name="Everyone" />
+
+            <!-- Create Share with share permissions -->
+            <util:FileShare Id="TestShare" Name="TestShareName" Description="This is a test share.">
+              <util:FileSharePermission User="Everyone" GenericAll="yes"/>
+            </util:FileShare>
+
+            <!-- NTFS ACL permissions -->
+            <CreateFolder>
+              <util:PermissionEx User="Everyone" GenericAll="yes" />
+            </CreateFolder>
+
+          </Component>
 
       </Directory>
       </Directory>
@@ -31,3 +37,4 @@
 
 </Product>
 </Wix>
+
