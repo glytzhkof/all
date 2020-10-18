@@ -8,7 +8,7 @@ Const msiOpenDatabaseModeReadOnly = 0
 
 Dim installer : Set installer = Nothing
 Set installer = Wscript.CreateObject("WindowsInstaller.Installer")
-Dim productcode : productcode = "D"
+Dim productcode
 
 ' Verify incoming drag and drop arguments
 If WScript.Arguments.Count = 0 Then MsgBox "Drag and drop an MSI file onto the VBScript" End If
