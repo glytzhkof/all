@@ -21,13 +21,15 @@ MsgBox "This export may take quite some time to complete." + vbNewLine + vbNewLi
 Set products = installer.ProductsEx("", "", 7) 
 installer.UILevel = msiUILevelNone
 
+ReDim relatedproductcodes(-1)
+   
 For Each product In products
    productcode = product.ProductCode 
    name = product.InstallProperty("ProductName") 
    version = product.InstallProperty("VersionString") 
 
    ' Get upgrade code via MSI session object (reads cached MSI database with applied transforms - apparently)
-   Err.Clear : relatedproductcodes = "" : Set session = installer.OpenProduct(productcode) ' Can fail to apply transforms, then we just report error in export
+   Err.Clear : Set session = installer.OpenProduct(productcode) ' Can fail to apply transforms, then we just report error in export
    If Err.Number = 0 Then
        ' So far so good, we have our session object, but upgrade code can be missing      
        upgradecode = session.ProductProperty("UpgradeCode")
@@ -35,8 +37,7 @@ For Each product In products
        If upgradecode <> "" Then
          Set upgrades = installer.RelatedProducts(upgradecode) 
          For Each u In upgrades
-            relatedproductcodes = relatedproductcodes & u
-            If Not(u = upgrades.Item(upgrades.Count - 1)) Then relatedproductcodes = relatedproductcodes & ";" End If ' Don't add semicolon after last upgrade item (avoids <br /> in html)
+            ReDim Preserve relatedproductcodes(UBound(relatedproductcodes) + 1) : relatedproductcodes(UBound(relatedproductcodes)) = u
          Next
        End If      
      Else
@@ -45,10 +46,13 @@ For Each product In products
    End If
    Set session = Nothing ' Important
    
+   If UBound(relatedproductcodes) > -1 Then allupgrades = Join(relatedproductcodes, "<br />")
+   ReDim relatedproductcodes(-1)
+   
    htmloutput.writeline ("<tr><td>" & p & "</td><td>" & _
                          product.InstallProperty("ProductName") & _
                          "</td><td>" & product.InstallProperty("VersionString") & "</td><td>" & product.ProductCode & "</td><td>" & _
-                         upgradecode & "</td><td>" & CreateHtmlLineFeeds(relatedproductcodes) & "</td></tr>")
+                         upgradecode & "</td><td>" & allupgrades & "</td></tr>")
    
    p = p + 1
 
@@ -60,10 +64,3 @@ htmloutput.writeline ("</tbody></table></body></html>")
 htmloutput.Close
 
 MsgBox "Export done, please open msiinfo.html", vbOKOnly + vbSystemModal, "MSI Info Export Complete"
-
-Function CreateHtmlLineFeeds (ByVal text)
-
-    text = Replace(text, ";", "<br />")
-	CreateHtmlLineFeeds = text
-	
-End Function
