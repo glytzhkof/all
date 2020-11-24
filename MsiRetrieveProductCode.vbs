@@ -1,5 +1,6 @@
 ' Retrieve all ProductCodes (with ProductName and ProductVersion)
-' Put on desktop and run from there. Output: "msiinfo.csv" on desktop itself
+' Save on desktop as "MsiRetrieveProductCode.vbs" (extension important) and run from there by double-clicking it
+' Output: "msiinfo.csv" on desktop itself
 
 Set fso = CreateObject("Scripting.FileSystemObject")
 Set output = fso.CreateTextFile("msiinfo.csv", True, True)
