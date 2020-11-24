@@ -8,6 +8,9 @@ Set installer = CreateObject("WindowsInstaller.Installer")
 
 On Error Resume Next ' we ignore all errors
 
+' Write headers
+output.writeline ("ProductCode" & ", " & "ProductName" & ", " & "Version")
+
 For Each product In installer.ProductsEx("", "", 7)
    productcode = product.ProductCode
    name = product.InstallProperty("ProductName")
