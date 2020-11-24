@@ -1,4 +1,6 @@
 ' Retrieve all ProductCodes (with ProductName and ProductVersion)
+' Put on desktop and run from there. Output: "msiinfo.csv" on desktop itself
+
 Set fso = CreateObject("Scripting.FileSystemObject")
 Set output = fso.CreateTextFile("msiinfo.csv", True, True)
 Set installer = CreateObject("WindowsInstaller.Installer")
