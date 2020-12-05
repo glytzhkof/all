@@ -1,4 +1,6 @@
-﻿$WIObject = new-object -comobject WindowsInstaller.Installer
+# https://stackoverflow.com/questions/65150110/powershell-how-to-use-windowsinstaller-installer-to-insert-a-property-value/65152502#65152502
+
+$WIObject = new-object -comobject WindowsInstaller.Installer
 $MSIOpenDatabaseModeTransact = 1
 $MSIPath = "C:\Users\User\Desktop\MyTest.msi"
 
