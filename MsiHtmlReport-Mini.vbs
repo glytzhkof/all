@@ -21,7 +21,7 @@ htmloutput.writeline ("<table><thead><tr>")
 htmloutput.writeline ("<th>#</th><th>Product Name</th><th>Version</th><th>Product Code</th><th>Upgrade Code</th><th>Related Product Codes</th>" )
 htmloutput.writeline ("</tr></thead><tbody>")
 
-MsgBox "This export may take quite some time to complete." + vbNewLine + vbNewLine + "Please wait for completion message box before opening report.", vbOKOnly + vbSystemModal, "MSI Info Export Starting"
+MsgBox "This export may take quite some time to complete." + vbNewLine + vbNewLine + "Please click OK in this dialog and then wait for the completion message box before opening the report found on the desktop.", vbOKOnly + vbSystemModal, "MSI Info Export Starting"
 
 Set products = installer.ProductsEx("", "", 7) 
 installer.UILevel = msiUILevelNone
