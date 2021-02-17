@@ -4,7 +4,7 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
 
   <Product Id="*" Name="FileVersioning" Language="1033" Version="$(var.MyVersion)"
-           Manufacturer="FileVersioning" UpgradeCode="{4864AA4A-EA1D-4367-8427-85D296B0A2A6}">
+           Manufacturer="FileVersioning" UpgradeCode="PUT-GUID-HERE">
 
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
