@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Id="*" Name="ProjectPaths" Language="1033" Version="1.0.0.0" Manufacturer="Someone" UpgradeCode="b3d89acb-71d9-48ab-a3df-886d49965ea3">
+  <Product Id="*" Name="ProjectPaths" Language="1033" Version="1.0.0.0" Manufacturer="Someone" UpgradeCode="PUT-GUID-HERE">
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
     <MediaTemplate EmbedCab="yes" />
     
