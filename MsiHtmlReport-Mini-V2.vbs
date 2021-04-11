@@ -5,10 +5,10 @@ Dim installer : Set installer = CreateObject("WindowsInstaller.Installer")
 On Error Resume Next
 
 ' See alternative code line just below:
-Set htmloutput = fso.CreateTextFile("msiinfo.html", True) : CheckCOMError
+Set htmloutput = fso.CreateTextFile("msiinfo.html", True)
 
 ' Change to this for machines with Unicode characters in product name:
-'Set htmloutput = fso.CreateTextFile("msiinfo.html", True, True) : CheckCOMError
+'Set htmloutput = fso.CreateTextFile("msiinfo.html", True, True)
 
 htmloutput.writeline ("<!DOCTYPE html>")
 htmloutput.writeline ("<html lang='en'><head><title>MSI Package Estate Information:</title><meta charset='windows-1252'>")
