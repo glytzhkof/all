@@ -36,11 +36,11 @@ For Each product In products
    version = product.InstallProperty("VersionString")
    scope = product.InstallProperty("AssignmentType")
 
-	Select Case scope
-	    Case 0 assignment = "User"
-	    Case 1 assignment = "Machine"
-	    Case Else assignment = "Unknown"
-	End Select
+   Select Case scope
+     Case 0 assignment = "User"
+     Case 1 assignment = "Machine"
+     Case Else assignment = "Unknown"
+   End Select
 
    ' Get upgrade code via MSI session object (reads cached MSI database with applied transforms - apparently)
    Err.Clear : Set session = installer.OpenProduct(productcode) ' Can fail to apply transforms, then we just report error in export
