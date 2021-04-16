@@ -1,6 +1,9 @@
 ' This script could create a lot of log files in the TEMP folder if your system has MSI logging enabled by default (MSI log policy enabled)
 ' MSI logging policy: HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Installer
-' On MSI logging: http://www.installsite.org/pages/en/msifaq/a/1022.htm
+'
+' On MSI logging:
+' - http://www.installsite.org/pages/en/msifaq/a/1022.htm
+' - https://stackoverflow.com/a/54458890/129130
 
 Const msiUILevelNone = 2 : p = 1
 Dim fso : Set fso = CreateObject("Scripting.FileSystemObject")
