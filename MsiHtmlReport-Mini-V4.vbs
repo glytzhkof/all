@@ -1,4 +1,4 @@
-' Be aware that if you have logging policy enabled there could be a lot of log files created in the TEMP folder by running this script.
+' This script could create a lot of log files in the TEMP folder if your system has MSI logging enabled by default (MSI log policy enabled)
 
 Const msiUILevelNone = 2 : p = 1
 Dim fso : Set fso = CreateObject("Scripting.FileSystemObject")
