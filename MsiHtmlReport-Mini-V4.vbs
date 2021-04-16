@@ -1,4 +1,5 @@
 ' This script could create a lot of log files in the TEMP folder if your system has MSI logging enabled by default (MSI log policy enabled)
+' MSI logging policy: HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Installer
 ' On MSI logging: http://www.installsite.org/pages/en/msifaq/a/1022.htm
 
 Const msiUILevelNone = 2 : p = 1
