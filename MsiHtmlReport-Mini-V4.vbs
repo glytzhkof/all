@@ -1,7 +1,7 @@
 ' This script could create a lot of log files in the TEMP folder if your system has MSI logging enabled by default (MSI log policy enabled)
 ' MSI logging policy: HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Installer
 '
-' Note: Right click and select "Copy" - CTRL + C with focus won't work.
+' Note: Right click and select "Copy" for highlighted table cell content - CTRL + C with focus won't work.
 '
 ' On MSI logging:
 ' - http://www.installsite.org/pages/en/msifaq/a/1022.htm
