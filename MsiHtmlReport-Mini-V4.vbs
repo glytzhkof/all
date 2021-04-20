@@ -86,4 +86,4 @@ On Error GoTo 0
 htmloutput.writeline ("</tbody></table></body></html>")
 htmloutput.Close
 
-MsgBox "Export done, please open msiinfo.html", vbOKOnly + vbSystemModal, "MSI Info Export Complete"
+   MsgBox "Export done, please open msiinfo.html (press F5 if file is already open in browser)", vbOKOnly + vbSystemModal, "MSI Info Export Complete"
