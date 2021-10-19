@@ -1,23 +1,15 @@
-' This script could create a lot of log files in the TEMP folder if your system has MSI logging enabled by default (MSI log policy enabled)
-' MSI logging policy: HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Installer
-'
-' Note: Right click and select "Copy" for highlighted table cell content - CTRL + C with focus might not work if the window does not have focus (highlighting still works).
-'
-' On MSI logging:
-' - http://www.installsite.org/pages/en/msifaq/a/1022.htm
-' - https://stackoverflow.com/a/54458890/129130
-
 Const msiUILevelNone = 2 : p = 1
 Dim fso : Set fso = CreateObject("Scripting.FileSystemObject")
 Dim installer : Set installer = CreateObject("WindowsInstaller.Installer")
+Dim filename : filename = "msiinfo_" & Day(Now) & "." & Month(Now) & "(month)." & Year(Now) & "_" & Hour(Now) & "-" & Minute(Now) & "-" & Second(Now) & ".html"
 
 On Error Resume Next
 
 ' See alternative code line just below:
-Set htmloutput = fso.CreateTextFile("msiinfo.html", True)
+Set htmloutput = fso.CreateTextFile(filename, True)
 
 ' Change to this for machines with Unicode characters in product name:
-'Set htmloutput = fso.CreateTextFile("msiinfo.html", True, True)
+'Set htmloutput = fso.CreateTextFile(filename, True, True)
 
 htmloutput.writeline ("<!DOCTYPE html>")
 htmloutput.writeline ("<html lang='en'><head><title>MSI Package Estate Information:</title><meta charset='windows-1252'>")
@@ -86,5 +78,4 @@ On Error GoTo 0
 htmloutput.writeline ("</tbody></table></body></html>")
 htmloutput.Close
 
-MsgBox "Export done, please open msiinfo.html" + vbNewLine + vbNewLine + "(press F5 in browser if file is already open)", vbOKOnly + vbSystemModal, "MSI Info Export Complete"
-
+MsgBox "Export done, please open this file on the desktop: " & filename, vbOKOnly + vbSystemModal, "MSI Info Export Complete"
