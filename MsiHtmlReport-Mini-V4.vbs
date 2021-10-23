@@ -10,9 +10,16 @@
 Const msiUILevelNone = 2 : p = 1
 Dim fso : Set fso = CreateObject("Scripting.FileSystemObject")
 Dim installer : Set installer = CreateObject("WindowsInstaller.Installer")
+
+' Create unique output file name based on current time and date
 Dim filename : filename = "msiinfo_" & Day(Now) & "." & Month(Now) & "(month)." & Year(Now) & "_" & Hour(Now) & "-" & Minute(Now) & "-" & Second(Now) & ".html"
 
 On Error Resume Next
+
+' Allow user to cancel script before it starts to export the html overview of MSI packages
+If vbCancel = MsgBox ("This export may take quite some time to complete." + vbNewLine + vbNewLine + "Please click OK and wait for the results to appear in your browser, or click Cancel to exit without running the script.", vbOKCancel + vbSystemModal, "MSI Info Export Starting") Then
+    WScript.Quit
+End If
 
 ' See alternative code line just below:
 Set htmloutput = fso.CreateTextFile(filename, True)
@@ -30,10 +37,8 @@ htmloutput.writeline ("th {font: bold 18px Calibri;background-color: purple;bord
 htmloutput.writeline ("table th {position: sticky;top: -1px;}</style>") : htmloutput.WriteLine ("")
 htmloutput.writeline ("</head><body  onload='init()'>")    
 htmloutput.writeline ("<table><thead><tr>")
-htmloutput.writeline ("<th>#</th><th>Product Name</th><th>Version</th><th>Package Code</th><th>Product Code</th><th>Upgrade Code</th><th>Related Product Codes</th><th>Scope</th>" )
+htmloutput.writeline ("<th>#</th><th>Product Name</th><th>Version</th><th>Package Code</th><th>Product Code</th><th>Upgrade Code</th><th  title='Product codes that share the same upgrade code.'>Related Product Codes</th><th>Scope</th>" )
 htmloutput.writeline ("</tr></thead><tbody>")
-
-MsgBox "This export may take quite some time to complete." + vbNewLine + vbNewLine + "Please click OK in this dialog and then wait for the completion message box before opening the report found on the desktop.", vbOKOnly + vbSystemModal, "MSI Info Export Starting"
 
 Set products = installer.ProductsEx("", "", 7) 
 installer.UILevel = msiUILevelNone
@@ -87,4 +92,6 @@ On Error GoTo 0
 htmloutput.writeline ("</tbody></table></body></html>")
 htmloutput.Close
 
-MsgBox "Export done, please open this file on the desktop: " & filename, vbOKOnly + vbSystemModal, "MSI Info Export Complete"
+' Open the exported html file in browser
+Dim wShell : Set wShell = CreateObject("WScript.Shell")
+wShell.Run filename, 9
