@@ -1,4 +1,4 @@
-' SAVE TO DESKTOP AND RUN FROM THERE.
+' SAVE TO DESKTOP AND RUN FROM THERE
 '
 ' This script could create a lot of log files in the TEMP folder if your system has MSI logging enabled by default (MSI log policy enabled)
 ' MSI logging policy: HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Installer
