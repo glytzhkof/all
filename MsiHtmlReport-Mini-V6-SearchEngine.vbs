@@ -27,7 +27,7 @@ End If
 Set htmloutput = fso.CreateTextFile(filename, True)
 
 ' Change to this for machines with Unicode characters in product name:
-'Set htmloutput = fso.CreateTextFile(filename, True, True)
+' Set htmloutput = fso.CreateTextFile(filename, True, True)
 
 htmloutput.writeline ("<!DOCTYPE html>")
 htmloutput.writeline ("<html lang='en'><head><title>MSI Package Estate Information:</title><meta charset='windows-1252'>")
