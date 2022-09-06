@@ -41,7 +41,7 @@ htmloutput.writeline ("th {font: bold 18px Calibri;background-color: purple;bord
 htmloutput.writeline ("table th {position: sticky;top: -1px;}</style>") : htmloutput.WriteLine ("")
 htmloutput.writeline ("</head><body  onload='init()'>")
 
-htmloutput.writeline ("<h1>MSI Package Report</h1><input id='search-box' type='text' onemptied='reset()' autocomplete='off' oninput='filterTable(this.value)' title='Filter table by keyword search' placeholder='Search For...' />")
+htmloutput.writeline ("<h1>MSI Package Report</h1><input id='search-box' type='text' onemptied='reset()' autocomplete='off' oninput='filterTable(this.value)' title='Filter table by keyword search' placeholder='Search for...' />")
 htmloutput.writeline ("<button onclick='reset()'>x</button><h3>Use your browser's zoom setting to make text more readable.</h3>")
 
 htmloutput.writeline ("<table><thead><tr>")
