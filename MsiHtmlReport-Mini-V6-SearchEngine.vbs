@@ -38,7 +38,7 @@ htmloutput.writeline ("<script>function init() { try { document.querySelectorAll
 htmloutput.writeline ("function filterTable(filter) { var row; var rows = document.querySelectorAll('table tbody tr'); var rowcount = rows.length; var hiddenrows = 0; for (row = 0; row < rowcount; row++) { if (rows[row].textContent.toUpperCase().indexOf(filter.toUpperCase()) > -1) { rows[row].style.display = '';} else { rows[row].style.display = 'none'; hiddenrows++;}}}")
 htmloutput.writeline ("function reset() {document.getElementById('search-box').value = '';filterTable('');}</script>")
 htmloutput.writeline ("<style>body {font: 12px Calibri;}a {color: lightgrey;} a:hover {background-color: black;}")
-htmloutput.writeline ("table, td {border: 1px solid black;border-collapse: collapse;padding: 0.3em;vertical-align: text-top;}")
+htmloutput.writeline ("table, td {border: 1px solid black;border-collapse: collapse;padding: 0.3em;vertical-align: text-top;border-top: none;}")
 htmloutput.writeline ("table>*>tr>td:nth-child(2) { max-width: 300px;}")
 htmloutput.writeline ("th {font: bold 18px Calibri;background-color: purple;border: 1px solid black;text-align: left;color: white;}")
 htmloutput.writeline ("table th {position: sticky;top: -1px;}</style>") : htmloutput.WriteLine ("")
@@ -107,4 +107,5 @@ htmloutput.Close
 ' Open the exported html file in browser
 Dim wShell : Set wShell = CreateObject("WScript.Shell")
 wShell.Run filename, 9
+
 
