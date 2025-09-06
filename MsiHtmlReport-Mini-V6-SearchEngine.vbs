@@ -1,5 +1,8 @@
 ' SAVE TO DESKTOP AND RUN FROM THERE
 '
+' WINDOWS 11: Due to the partial deprecation of VBScript in this OS you must run the script with admin rights in order
+'             to be able to instantiate the COM objects. Open an admin cmd.exe and run: cscript MsiHtmlReport-Mini-V6-SearchEngine.vbs
+'
 ' This script could create a lot of log files in the TEMP folder if your system has MSI logging enabled by default (MSI log policy enabled)
 ' MSI logging policy: HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Installer
 '
@@ -104,3 +107,4 @@ htmloutput.Close
 ' Open the exported html file in browser
 Dim wShell : Set wShell = CreateObject("WScript.Shell")
 wShell.Run filename, 9
+
