@@ -36,7 +36,7 @@ htmloutput.writeline ("<!DOCTYPE html>")
 htmloutput.writeline ("<html lang='en'><head><title>MSI Package Estate Information:</title><meta charset='windows-1252'>")
 htmloutput.writeline "<script>function init() { try { document.querySelectorAll('td').forEach(link => { link.addEventListener('mouseenter', function (event) {var range = document.createRange(); range.selectNodeContents(this); var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);});});} catch (error) { console.log(error); }}</script>"
 htmloutput.writeline ("<style>body {font: 12px Calibri;}")
-htmloutput.writeline ("table, td {border: 1px solid black;border-collapse: collapse;padding: 0.3em;vertical-align: text-top;}")
+htmloutput.writeline ("table, td {border: 1px solid black;border-collapse: collapse;padding: 0.3em;vertical-align: text-top;border-top: none;}")
 htmloutput.writeline ("table>*>tr>td:nth-child(2) { max-width: 300px;}")
 htmloutput.writeline ("th {font: bold 18px Calibri;background-color: purple;border: 1px solid black;text-align: left;color: white;}")
 htmloutput.writeline ("table th {position: sticky;top: -1px;}</style>") : htmloutput.WriteLine ("")
@@ -100,5 +100,6 @@ htmloutput.Close
 ' Open the exported html file in browser
 Dim wShell : Set wShell = CreateObject("WScript.Shell")
 wShell.Run filename, 9
+
 
 
