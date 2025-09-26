@@ -46,7 +46,7 @@ htmloutput.writeline ("th {font: bold 18px Calibri;background-color: purple;text
 htmloutput.writeline ("table th {position: sticky;top: -1px;}</style>") : htmloutput.WriteLine ("")
 htmloutput.writeline ("</head><body  onload='init()'>")
 
-htmloutput.writeline ("<h1>MSI Package Report</h1><input id='search-box' type='text' onemptied='reset()' autocomplete='off' oninput='filterTable(this.value)' title='Filter table by keyword search' placeholder='Search for...' />")
+htmloutput.writeline ("<h1>MSI Package Report</h1><input id='search-box' type='text' onemptied='reset()' autocomplete='off' oninput='filterTable(this.value)' title='Filter table by keyword search' placeholder='Search for...'>")
 htmloutput.writeline ("<button onclick='reset()'>x</button><h3>Use your browser's zoom setting to make text more readable.</h3>")
 
 htmloutput.writeline ("<table><thead><tr>")
@@ -58,10 +58,10 @@ Set products = installer.ProductsEx("", "", 7)
 installer.UILevel = msiUILevelNone
 
 ReDim relatedproductcodes(-1)
-
+   
 For Each product In products
    productcode = product.ProductCode
-   name = product.InstallProperty("ProductName") 
+   name = product.InstallProperty("ProductName")
    version = product.InstallProperty("VersionString")
    packagecode = product.InstallProperty("PackageCode")
    scope = product.InstallProperty("AssignmentType")
@@ -91,15 +91,15 @@ For Each product In products
       upgradecode = "Error Accessing Data: " & Err.Source & ", " & Hex(Err.Number) : Err.Clear
    End If
    Set session = Nothing ' Important - COM object must be released before next package
-
+   
    ' If there are related product codes, create a list for the HTML output
-   If UBound(relatedproductcodes) > -1 Then allupgrades = Join(relatedproductcodes, "<br />")
+   If UBound(relatedproductcodes) > -1 Then allupgrades = Join(relatedproductcodes, "<br>")
    ReDim relatedproductcodes(-1)
-
+   
    ' Write MSI package information (HTML table row)
    htmloutput.writeline ("<tr><td>" & p & "</td><td>" & name & "</td><td>" & version & "</td><td>" & packagecode & "</td><td>" & productcode & "</td><td>" & _
                          upgradecode & "</td><td>" & allupgrades & "</td><td>" & assignment & "</td><td>" & lcid & "</td></tr>")
-
+   
    p = p + 1
 
 Next
