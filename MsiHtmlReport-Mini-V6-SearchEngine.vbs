@@ -1,4 +1,4 @@
-' SAVE TO DESKTOP AND RUN FROM THERE
+' SAVE TO DESKTOP AND RUN FROM THERE.
 '
 ' WINDOWS 11: Due to the partial deprecation of VBScript in this OS you must run the script with admin rights in order
 '             to be able to instantiate the COM objects. Open an admin cmd.exe and run: cscript MsiHtmlReport-Mini-V6-SearchEngine.vbs
@@ -19,6 +19,7 @@ Dim installer : Set installer = CreateObject("WindowsInstaller.Installer")
 ' Create unique output file name based on current time and date
 Dim filename : filename = "msiinfo_" & Day(Now) & "." & Month(Now) & "(month)." & Year(Now) & "_" & Hour(Now) & "-" & Minute(Now) & "-" & Second(Now) & ".html"
 
+' We want to continue with the next package even if there are errors
 On Error Resume Next
 
 ' Allow user to cancel script before it starts to export the html overview of MSI packages
@@ -32,6 +33,7 @@ Set htmloutput = fso.CreateTextFile(filename, True)
 ' Change to this for machines with Unicode characters in product name:
 ' Set htmloutput = fso.CreateTextFile(filename, True, True)
 
+' Generate HTML output file header
 htmloutput.writeline ("<!DOCTYPE html>")
 htmloutput.writeline ("<html lang='en'><head><title>MSI Package Estate Information:</title><meta charset='windows-1252'>")
 htmloutput.writeline ("<script>function init() { try { document.querySelectorAll('td').forEach(link => { link.addEventListener('mouseenter', function (event) {var range = document.createRange(); range.selectNodeContents(this); var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);});});} catch (error) { console.log(error); }}")
@@ -51,15 +53,17 @@ htmloutput.writeline ("<table><thead><tr>")
 htmloutput.writeline ("<th>#</th><th>Product Name</th><th>Version</th><th>Package Code</th><th>Product Code</th><th>Upgrade Code</th><th  title='Product codes that share the same upgrade code.'>Related Product Codes</th><th>Scope</th><th><a href='https://msdn.microsoft.com/en-us/library/ms912047(v=winembedded.10).aspx' target='_blank'>LCID</a></th>" )
 htmloutput.writeline ("</tr></thead><tbody>")
 
+' Retrieve all MSI packages on the machine
 Set products = installer.ProductsEx("", "", 7) 
 installer.UILevel = msiUILevelNone
 
 ReDim relatedproductcodes(-1)
    
 For Each product In products
-   productcode = product.ProductCode 
+   productcode = product.ProductCode
    name = product.InstallProperty("ProductName") 
    version = product.InstallProperty("VersionString")
+   packagecode = product.InstallProperty("PackageCode")
    scope = product.InstallProperty("AssignmentType")
    lcid = product.InstallProperty("Language")
 
@@ -78,6 +82,7 @@ For Each product In products
        If upgradecode <> "" Then
          Set upgrades = installer.RelatedProducts(upgradecode) 
          For Each u In upgrades
+            ' Find product codes that are related because several MSI packages share the same upgrade code (family of products)
             ReDim Preserve relatedproductcodes(UBound(relatedproductcodes) + 1) : relatedproductcodes(UBound(relatedproductcodes)) = u
          Next
        End If      
@@ -85,14 +90,14 @@ For Each product In products
       ' Our whole session object failed to instantiate, report error in export, clear error and continue with next package
       upgradecode = "Error Accessing Data: " & Err.Source & ", " & Hex(Err.Number) : Err.Clear
    End If
-   Set session = Nothing ' Important
+   Set session = Nothing ' Important - COM object must be released before next package
    
+   ' If there are related product codes, create a list for the HTML output
    If UBound(relatedproductcodes) > -1 Then allupgrades = Join(relatedproductcodes, "<br />")
    ReDim relatedproductcodes(-1)
    
-   htmloutput.writeline ("<tr><td>" & p & "</td><td>" & _
-                         product.InstallProperty("ProductName") & _
-                         "</td><td>" & product.InstallProperty("VersionString") & "</td><td>" & product.InstallProperty("PackageCode") & "</td><td>" & product.ProductCode & "</td><td>" & _
+   ' Write MSI package information (HTML table row)
+   htmloutput.writeline ("<tr><td>" & p & "</td><td>" & name & "</td><td>" & version & "</td><td>" & packagecode & "</td><td>" & productcode & "</td><td>" & _
                          upgradecode & "</td><td>" & allupgrades & "</td><td>" & assignment & "</td><td>" & lcid & "</td></tr>")
    
    p = p + 1
@@ -107,6 +112,3 @@ htmloutput.Close
 ' Open the exported html file in browser
 Dim wShell : Set wShell = CreateObject("WScript.Shell")
 wShell.Run filename, 9
-
-
-
