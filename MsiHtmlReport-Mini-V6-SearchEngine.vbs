@@ -58,7 +58,7 @@ Set products = installer.ProductsEx("", "", 7)
 installer.UILevel = msiUILevelNone
 
 ReDim relatedproductcodes(-1)
-   
+
 For Each product In products
    productcode = product.ProductCode
    name = product.InstallProperty("ProductName") 
@@ -91,15 +91,15 @@ For Each product In products
       upgradecode = "Error Accessing Data: " & Err.Source & ", " & Hex(Err.Number) : Err.Clear
    End If
    Set session = Nothing ' Important - COM object must be released before next package
-   
+
    ' If there are related product codes, create a list for the HTML output
    If UBound(relatedproductcodes) > -1 Then allupgrades = Join(relatedproductcodes, "<br />")
    ReDim relatedproductcodes(-1)
-   
+
    ' Write MSI package information (HTML table row)
    htmloutput.writeline ("<tr><td>" & p & "</td><td>" & name & "</td><td>" & version & "</td><td>" & packagecode & "</td><td>" & productcode & "</td><td>" & _
                          upgradecode & "</td><td>" & allupgrades & "</td><td>" & assignment & "</td><td>" & lcid & "</td></tr>")
-   
+
    p = p + 1
 
 Next
