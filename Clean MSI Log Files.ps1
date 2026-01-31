@@ -19,8 +19,8 @@ $counter = 0
 
 try {    
 
-    # RegEx: First match "MSI" literal string for the start of the file name (case insentitive  
-    #        for good measure) followed by 4 or 5 characters before the file name ends with .log
+    # RegEx: First match "MSI" literal string for the start of the file name 
+    #        followed by 4 or 5 characters before the file name ends with .log
     Get-ChildItem -Path $temppath | Where-Object { $_.Name -match '^MSI.{4,5}\.log$'} | ForEach-Object {
         # Remove-Item options: -Confirm, -Force, -Recurse, -WhatIf, -Verbose
         Remove-Item -Path $_.FullName -Verbose
