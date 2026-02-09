@@ -1,0 +1,6 @@
+REGEDIT4
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Installer]
+"Logging"=-
+"Debug"=-
+
