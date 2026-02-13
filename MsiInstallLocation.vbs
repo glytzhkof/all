@@ -1,10 +1,11 @@
+' Run as admin.
+
 Dim fso : Set fso = CreateObject("Scripting.FileSystemObject")
 Dim installer : Set installer = CreateObject("WindowsInstaller.Installer")
 
-On Error Resume Next
+'On Error Resume Next
 
-' See alternative code line just below:
-Set htmloutput = fso.CreateTextFile("MsiInstallLocation.html", True) : CheckCOMError
+Set htmloutput = fso.CreateTextFile("MsiInstallLocation.html", True) ': CheckCOMError
 
 htmloutput.writeline ("<!DOCTYPE html>")
 htmloutput.writeline ("<html lang='en'><head><title>MSI Package Estate Information:</title><meta charset='windows-1252'>")
@@ -36,3 +37,4 @@ htmloutput.Close
 On Error GoTo 0
 
 MsgBox "Export done, please open MsiInstallLocation.html", vbOKOnly + vbSystemModal, "MSI Info Export Complete"
+
